@@ -1,20 +1,23 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "e1a919e22ed6a5d9fc31db3ed410164a"
-application_url = "https://shopify.dev/apps/default-app-home"
-embedded = true
 name = "prorx-extension-app"
 handle = "prorx-extension-app"
+application_url = "https://shopify.dev/apps/default-app-home"
+embedded = true
 
-[webhooks]
-api_version = "2025-01"
+[build]
+include_config_on_deploy = true
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = ""
+scopes = "read_checkouts,read_customers,read_orders,read_products,read_shipping,write_checkouts,write_customers,write_orders,write_products,write_shipping"
 
 [auth]
 redirect_urls = [ "https://shopify.dev/apps/default-app-home/api/auth" ]
+
+[webhooks]
+api_version = "2025-01"
 
 [pos]
 embedded = false
