@@ -16,7 +16,7 @@ type = "ui_extension"
 # https://shopify.dev/docs/api/checkout-ui-extensions/unstable/extension-targets-overview
 
 [[extensions.targeting]]
-module = "./src/Checkout.jsx"
+module = "./src/components/Checkout.jsx"
 target = "purchase.checkout.block.render"
 
 [extensions.capabilities]
