@@ -15,6 +15,12 @@ export const IcsProgramList = {
 };
 
 export const IcsSubProgramList = {
+  Hospital: {
+    1: "Abbeylawn - 1047090",
+    2: "Barrie Manor - 1046969",
+    3: "Carriage House - 1054343",
+    4: "Cedarbrook - 1063454"
+  },
   TCU: {
     1: "Abbeylawn - 1047090",
     2: "Barrie Manor - 1046969",
