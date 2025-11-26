@@ -75,6 +75,9 @@ export const IcsSubProgramList = {
   NRIO: {
     1: "NRIO-2125372"
   },
+  VYTA: {
+    1: "VYTA-1102860"
+  },
 }
 
 export const ParamedProgramList = {
