@@ -2,7 +2,7 @@ export const ProgramTypeList = {
   1: "ICS",
   2: "Paramed",
   3: "WSIB",
-  4: "VYTA",
+  4: "Vyta",
   5: "Bayshore Branch",
   6: "Bayshore Consumable",
   7: "Others",
@@ -79,10 +79,9 @@ export const IcsSubProgramList = {
 }
 
 export const VytaProgramList = {
-  VYTA: {
-    1: "VYTA-1102860"
-  },
+    1: "Vyta-1102860"
 }
+
 
 export const ParamedProgramList = {
   1: "Chattam-Kent - 1131530",

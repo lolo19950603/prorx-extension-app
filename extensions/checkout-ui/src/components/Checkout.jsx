@@ -157,7 +157,7 @@ function Extension() {
           />
         </>
       )}
-      {selectedProgramOption === "VYTA" && (
+      {selectedProgramOption === "Vyta" && (
         <Select
         label="Select Program"
         options={Object.entries(VytaProgramList).map(
