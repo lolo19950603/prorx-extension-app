@@ -21,7 +21,8 @@ import {
   ProgramTypeList,  
   IcsProgramList,
   IcsSubProgramList,
-  ParamedProgramList
+  ParamedProgramList,
+  VytaProgramList
 } from "../data/BillingNumbers.jsx";
 
 // 1. Choose an extension target
@@ -155,6 +156,19 @@ function Extension() {
           valuvalue={billingNumber}
           />
         </>
+      )}
+      {selectedProgramOption === "VYTA" && (
+        <Select
+        label="Select Program"
+        options={Object.entries(VytaProgramList).map(
+          ([key, value]) => ({
+            label: value,
+            value: value,
+          })
+        )}
+        value={selectedBilling}
+        onChange={handleBillingChange}
+        />
       )}
       {selectedProgramOption === "Bayshore Branch" && (
         <>
