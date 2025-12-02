@@ -81,16 +81,14 @@ export const IcsSubProgramList = {
 export const VytaProgramList = {
     1: "Vyta - SK & AB-1145857",
     2: "Vyta - Greater Vancouver-1145859",
-    3: "Vyta - West-1145860",
-    4: "Vyta - Hamilton/Niagara-1145862",
-    5: "Vyta - Durham-1145864",
-    6: "Vyta - GTA North-1145865",
-    7: "Vyta - GTA East-1145866",
-    8: "Vyta - GTA West-1145867",
-    9: "Vyta - South Western Ontario-1145868",
-    10: "Vyta - Eastern Ontario-1145869",
-    11: "Vyta - ON-1145870",
-    12: "Vyta - QC-1145871"
+    3: "Vyta - Hamilton/Niagara-1145862",
+    4: "Vyta - Durham-1145864",
+    5: "Vyta - GTA North-1145865",
+    6: "Vyta - GTA East-1145866",
+    7: "Vyta - GTA West-1145867",
+    8: "Vyta - South Western Ontario-1145868",
+    9: "Vyta - Eastern Ontario-1145869",
+    10: "Vyta - QC-1145871"
 };
 
 
