@@ -93,6 +93,7 @@ export const VytaProgramList = {
 
 
 export const ParamedProgramList = {
-  1: "Chattam-Kent - 1131530",
-  2: "Guelph OHT - 1131535"
+  1: "Chatham-Kent - 1131530",
+  2: "Guelph OHT - 1131535",
+  3: "Chatham H2H - 1151904"
 };
