@@ -67,6 +67,7 @@ export const IcsSubProgramList = {
     33: "Wellington Health Care Alliance - 1144415",
     34: "William Osler Peritoneal Dialysis - 1118861",
     35: "WilliamOsler@Home - 1118860",
+    36: "West Haldimand@Home - 1152366",
   },
   "H&K": {
     1: "Humber River - 1118862",
