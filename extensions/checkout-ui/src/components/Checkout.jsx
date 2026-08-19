@@ -25,7 +25,14 @@ import {
   VytaProgramList,
   ThornbrookHomecareProgramList,
   CarecoreProgramList,
+  ConsumableLocationList,
+  ConsumableProgramList,
 } from "../data/BillingNumbers.jsx";
+
+const boldLocationLabel = (label) =>
+  label
+    .replace(/Markham/g, "𝗠𝗮𝗿𝗸𝗵𝗮𝗺")
+    .replace(/Kitchener/g, "𝗞𝗶𝘁𝗰𝗵𝗲𝗻𝗲𝗿");
 
 // 1. Choose an extension target
 export default reactExtension("purchase.checkout.block.render", () => (
@@ -63,24 +70,17 @@ function Extension() {
 
 
   const handleCheckboxChange = (option) => {
-    if (option === "Bayshore Consumable") {
-      setProgramName("Bayshore")
-      setBillingNumber("Consumable")
-      setSelectedProgramOption(option)
-    }
-    else {
-      setSelectedProgramOption(option)
-      setProgramName(option)
-      setBillingNumber("")
-      setSelectedBilling("")
-      setSubProgramName("")
-    }
+    setSelectedProgramOption(option)
+    setProgramName(option)
+    setBillingNumber("")
+    setSelectedBilling("")
+    setSubProgramName("")
   };
 
   const handleSubProgramChange = (option) => {
     if (option !== subProgramName) {
-      setSubProgramName(option)
       setBillingNumber("")
+      setSelectedBilling("")
     }
     setSubProgramName(option)
   };
@@ -191,6 +191,34 @@ function Extension() {
         onChange={handleBillingChange}
         />
       )}
+      {selectedProgramOption === "Bayshore Consumable" && (
+        <>
+          <Select
+          label="Select Location"
+          options={Object.entries(ConsumableLocationList).map(
+            ([key, value]) => ({
+              label: value,
+              value: value,
+            })
+          )}
+          value={subProgramName}
+          onChange={handleSubProgramChange}
+          />
+          {subProgramName && ConsumableProgramList[subProgramName] && (
+            <Select
+            label="Select Program"
+            options={Object.entries(ConsumableProgramList[subProgramName]).map(
+              ([key, value]) => ({
+                label: boldLocationLabel(value),
+                value: value,
+              })
+            )}
+            value={selectedBilling}
+            onChange={handleBillingChange}
+            />
+          )}
+        </>
+      )}
       {selectedProgramOption === "Bayshore Branch" && (
         <>
           <TextField
@@ -206,7 +234,7 @@ function Extension() {
 
   function handleBillingChange(value) {
     setSelectedBilling(value);
-    if (subProgramName !== "") {
+    if (subProgramName !== "" && selectedProgramOption === "ICS") {
       setBillingNumber(subProgramName+" "+value)
     }
     else {

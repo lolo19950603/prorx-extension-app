@@ -107,3 +107,25 @@ export const ThornbrookHomecareProgramList = {
 export const CarecoreProgramList = {
   1: "Carecore - 1064739",
 };
+
+export const ConsumableLocationList = {
+  1: "Markham Location",
+  2: "Kitchener Location",
+};
+
+export const ConsumableProgramList = {
+  "Markham Location": {
+    1: "Equipment Room Consumables - Markham - 1084573",
+    2: "HCCSS Clean Room Consumables - Markham - 1084574",
+    3: "BCS Clean Room Consumables - Markham - 1084575",
+    4: "Logistics/Picking Consumables - Markham - 1084576",
+    5: "Diabetes Express Consumables - Markham - 1086578",
+    6: "HCCSS Pharmacy Consumables - Markham - 1088140",
+    7: "Specialty Pharmacy Consumables - Markham - 1088141",
+  },
+  "Kitchener Location": {
+    1: "HCCSS Clean Room Consumables - Kitchener - 1085482",
+    2: "Logistics Consumables - Kitchener - 1085484",
+    3: "Equipment Room Consumables - Kitchener - 1085485",
+  },
+};
