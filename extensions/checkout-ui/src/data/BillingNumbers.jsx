@@ -5,7 +5,8 @@ export const ProgramTypeList = {
   4: "Vyta",
   5: "Bayshore Branch",
   6: "Bayshore Consumable",
-  7: "Others",
+  7: "Thornbrook Homecare",
+  8: "Carecore",
 }
 
 export const IcsProgramList = {
@@ -97,4 +98,12 @@ export const ParamedProgramList = {
   1: "Chatham-Kent - 1131530",
   2: "Guelph OHT - 1131535",
   3: "Chatham H2H - 1151904"
+};
+
+export const ThornbrookHomecareProgramList = {
+  1: "Thornbrook Homecare - 1053792",
+};
+
+export const CarecoreProgramList = {
+  1: "Carecore - 1064739",
 };

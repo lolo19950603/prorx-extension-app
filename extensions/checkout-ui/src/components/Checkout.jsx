@@ -22,7 +22,9 @@ import {
   IcsProgramList,
   IcsSubProgramList,
   ParamedProgramList,
-  VytaProgramList
+  VytaProgramList,
+  ThornbrookHomecareProgramList,
+  CarecoreProgramList,
 } from "../data/BillingNumbers.jsx";
 
 // 1. Choose an extension target
@@ -61,14 +63,7 @@ function Extension() {
 
 
   const handleCheckboxChange = (option) => {
-    if (option === "Others") {
-      setSelectedProgramOption(option)
-      setProgramName("")
-      setBillingNumber("")
-      setSelectedBilling("")
-      setSubProgramName("")
-    }
-    else if (option === "Bayshore Consumable") {
+    if (option === "Bayshore Consumable") {
       setProgramName("Bayshore")
       setBillingNumber("Consumable")
       setSelectedProgramOption(option)
@@ -170,27 +165,37 @@ function Extension() {
         onChange={handleBillingChange}
         />
       )}
+      {selectedProgramOption === "Thornbrook Homecare" && (
+        <Select
+        label="Select Program"
+        options={Object.entries(ThornbrookHomecareProgramList).map(
+          ([key, value]) => ({
+            label: value,
+            value: value,
+          })
+        )}
+        value={selectedBilling}
+        onChange={handleBillingChange}
+        />
+      )}
+      {selectedProgramOption === "Carecore" && (
+        <Select
+        label="Select Program"
+        options={Object.entries(CarecoreProgramList).map(
+          ([key, value]) => ({
+            label: value,
+            value: value,
+          })
+        )}
+        value={selectedBilling}
+        onChange={handleBillingChange}
+        />
+      )}
       {selectedProgramOption === "Bayshore Branch" && (
         <>
           <TextField
           label={`${selectedProgramOption} Billing Number`}
           name={`${selectedProgramOption} Billing Number`}
-          onChange={(value) => setBillingNumber(value)}
-          valuvalue={billingNumber}
-          />
-        </>
-      )}
-      {selectedProgramOption === "Others" && (
-        <>
-          <TextField
-          label="Program Name"
-          name="Program Name"
-          onChange={(value) => setProgramName(value)}
-          value={programName}
-          />
-          <TextField
-          label="Billing Number"
-          name="Billing Number"
           onChange={(value) => setBillingNumber(value)}
           valuvalue={billingNumber}
           />
