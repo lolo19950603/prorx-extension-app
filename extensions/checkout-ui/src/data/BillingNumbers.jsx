@@ -6,7 +6,7 @@ export const ProgramTypeList = {
   5: "Bayshore Branch",
   6: "Bayshore Consumable",
   7: "Thornbrook Homecare",
-  8: "Carecore",
+  8: "Carecor",
 }
 
 export const IcsProgramList = {
@@ -104,8 +104,10 @@ export const ThornbrookHomecareProgramList = {
   1: "Thornbrook Homecare - 1053792",
 };
 
-export const CarecoreProgramList = {
-  1: "Carecore - 1064739",
+export const CarecorProgramList = {
+  1: "Carecor Health Services Halifax - 1064739",
+  2: "Carecor Health Services Ottawa - 1064740",
+  3: "Carecor Health Services Hamilton - 1120272",
 };
 
 export const ConsumableLocationList = {

@@ -24,7 +24,7 @@ import {
   ParamedProgramList,
   VytaProgramList,
   ThornbrookHomecareProgramList,
-  CarecoreProgramList,
+  CarecorProgramList,
   ConsumableLocationList,
   ConsumableProgramList,
 } from "../data/BillingNumbers.jsx";
@@ -178,10 +178,10 @@ function Extension() {
         onChange={handleBillingChange}
         />
       )}
-      {selectedProgramOption === "Carecore" && (
+      {selectedProgramOption === "Carecor" && (
         <Select
         label="Select Program"
-        options={Object.entries(CarecoreProgramList).map(
+        options={Object.entries(CarecorProgramList).map(
           ([key, value]) => ({
             label: value,
             value: value,
