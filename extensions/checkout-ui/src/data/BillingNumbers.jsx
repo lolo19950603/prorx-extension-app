@@ -4,7 +4,7 @@ export const ProgramTypeList = {
   3: "WSIB",
   4: "Vyta",
   5: "Bayshore Branch",
-  6: "Bayshore Consumable",
+  6: "Consumable",
   7: "Thornbrook Homecare",
   8: "Carecor",
 }
