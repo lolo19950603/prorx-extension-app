@@ -30,6 +30,8 @@ import {
   CarecorProgramList,
   ConsumableLocationList,
   ConsumableProgramList,
+  BayshoreBranchProvinceList,
+  BayshoreBranchProgramList,
 } from "../data/BillingNumbers.jsx";
 
 const boldLocationLabel = (label) =>
@@ -325,12 +327,30 @@ function Extension() {
           )}
           {selectedProgramOption === "Bayshore Branch" && (
             <>
-              <TextField
-              label={`${selectedProgramOption} Billing Number`}
-              name={`${selectedProgramOption} Billing Number`}
-              onChange={(value) => setBillingNumber(value)}
-              value={billingNumber}
+              <Select
+              label="Select Province"
+              options={Object.entries(BayshoreBranchProvinceList).map(
+                ([key, value]) => ({
+                  label: value,
+                  value: value,
+                })
+              )}
+              value={subProgramName}
+              onChange={handleSubProgramChange}
               />
+              {subProgramName && BayshoreBranchProgramList[subProgramName] && (
+                <Select
+                label="Select Branch"
+                options={Object.entries(BayshoreBranchProgramList[subProgramName]).map(
+                  ([key, value]) => ({
+                    label: value,
+                    value: value,
+                  })
+                )}
+                value={selectedBilling}
+                onChange={handleBillingChange}
+                />
+              )}
             </>
           )}
         </>
