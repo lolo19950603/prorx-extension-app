@@ -262,7 +262,7 @@ function Extension() {
             onChange={handleBillingChange}
             />
           )}
-          {isWSIBProgram(selectedProgramOption) && (}
+          {isWSIBProgram(selectedProgramOption) && (
             <>
               <TextField
               label={`${selectedProgramOption} Billing Number`}
