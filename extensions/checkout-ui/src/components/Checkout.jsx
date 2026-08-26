@@ -67,6 +67,20 @@ function parseProgramTags(value) {
     .filter(Boolean);
 }
 
+function programMatchesTag(program, tag) {
+  const programName = program.toLowerCase();
+  const tagName = tag.toLowerCase();
+  return (
+    programName === tagName ||
+    programName.startsWith(`${tagName} - `) ||
+    programName.startsWith(`${tagName}(`)
+  );
+}
+
+function isWSIBProgram(program) {
+  return program === "WSIB" || program.startsWith("WSIB(") || program.startsWith("WSIB - ");
+}
+
 // 1. Choose an extension target
 export default reactExtension("purchase.checkout.block.render", () => (
   <Extension />
@@ -95,7 +109,7 @@ function Extension() {
     const customerTags = parseProgramTags(programTagsEntry?.metafield.value);
 
     return PROGRAM_TYPES.filter((program) =>
-      customerTags.some((tag) => tag.toLowerCase() === program.toLowerCase())
+      customerTags.some((tag) => programMatchesTag(program, tag))
     );
   }, [appMetafields]);
 
@@ -248,7 +262,7 @@ function Extension() {
             onChange={handleBillingChange}
             />
           )}
-          {selectedProgramOption === "WSIB" && (
+          {isWSIBProgram(selectedProgramOption) && (}
             <>
               <TextField
               label={`${selectedProgramOption} Billing Number`}
