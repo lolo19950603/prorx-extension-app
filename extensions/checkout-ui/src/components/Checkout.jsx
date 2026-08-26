@@ -46,6 +46,7 @@ const UNAUTHORIZED_MESSAGE =
   "You're not authorized to complete the checkout. Please email prorx@bayshore.ca";
 const INCOMPLETE_MESSAGE =
   "Please complete all billing fields before completing checkout.";
+const WSIB_ORDER_LABEL = "WSIB(#1000102)";
 
 function parseProgramTags(value) {
   if (!value) {
@@ -67,18 +68,11 @@ function parseProgramTags(value) {
     .filter(Boolean);
 }
 
-function programMatchesTag(program, tag) {
-  const programName = program.toLowerCase();
-  const tagName = tag.toLowerCase();
-  return (
-    programName === tagName ||
-    programName.startsWith(`${tagName} - `) ||
-    programName.startsWith(`${tagName}(`)
-  );
-}
-
-function isWSIBProgram(program) {
-  return program === "WSIB" || program.startsWith("WSIB(") || program.startsWith("WSIB - ");
+function formatProgramInfo(program, billingNumber) {
+  if (program === "WSIB") {
+    return `${WSIB_ORDER_LABEL} ${billingNumber}`;
+  }
+  return `${program} ${billingNumber}`;
 }
 
 // 1. Choose an extension target
@@ -109,7 +103,7 @@ function Extension() {
     const customerTags = parseProgramTags(programTagsEntry?.metafield.value);
 
     return PROGRAM_TYPES.filter((program) =>
-      customerTags.some((tag) => programMatchesTag(program, tag))
+      customerTags.some((tag) => tag.toLowerCase() === program.toLowerCase())
     );
   }, [appMetafields]);
 
@@ -124,7 +118,7 @@ function Extension() {
         applyAttributeChange({
           key: "Program Info",
           type: "updateAttribute",
-          value: programName + " " + billingNumber,
+          value: formatProgramInfo(programName, billingNumber),
         });
       }
       else if (billingNumber === "") {
@@ -262,7 +256,7 @@ function Extension() {
             onChange={handleBillingChange}
             />
           )}
-          {isWSIBProgram(selectedProgramOption) && (
+          {selectedProgramOption === "WSIB" && (
             <>
               <TextField
               label={`${selectedProgramOption} Billing Number`}
