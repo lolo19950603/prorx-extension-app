@@ -1,7 +1,7 @@
 export const ProgramTypeList = {
   1: "ICS",
   2: "Paramed",
-  3: "WSIB",
+  3: "WSIB - 1000102",
   4: "Vyta",
   5: "Bayshore Branch",
   6: "Consumable",
