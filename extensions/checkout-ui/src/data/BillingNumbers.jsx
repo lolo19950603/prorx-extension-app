@@ -98,7 +98,7 @@ export const ParamedProgramList = {
   1: "Chatham-Kent - 1131530",
   2: "Guelph OHT - 1131535",
   3: "Chatham H2H - 1151904",
-  4: "Paramed Huntsville Nursing Clinic - 1164424"
+  4: "Huntsville Nursing Clinic - 1164424"
 };
 
 export const ThornbrookHomecareProgramList = {
