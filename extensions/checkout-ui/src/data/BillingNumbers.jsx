@@ -244,6 +244,6 @@ export const BayshoreBranchProgramList = {
     1: "BHC Branch PEI (Private) - 8 MOUNT EDWARD RD, CHARLOTTETOWN, C1A 5R8 - 2014366",
   },
   "Newfoundland and Labrador": {
-    1: "BHC Branch St John (PRIVATE) - 17-1 Paton Street, ST. JOHN'S, A1B 4S8 - 1061478",
+    1: "BHC Branch St John (PRIVATE) - 75 Airport Road, suite 101, ST. JOHN'S, A1A 4Y3 - 1061478",
   },
 };
