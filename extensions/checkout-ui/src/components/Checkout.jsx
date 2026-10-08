@@ -1,23 +1,11 @@
+import "@shopify/ui-extensions/preact";
+import { render } from "preact";
+import { useState, useEffect, useMemo } from "preact/hooks";
 import {
-  Heading,
-  Select,
-  InlineStack,
-  TextField,
-  reactExtension,
-  Banner,
-  Checkbox,
-  BlockStack,
-  BlockSpacer,
-  Text,
-  useApi,
-  useApplyAttributeChange,
   useAppMetafields,
   useBuyerJourneyIntercept,
   useCustomer,
-  useInstructions,
-  useTranslate,
-} from "@shopify/ui-extensions-react/checkout";
-import { useState, useEffect, useMemo } from "react";
+} from "@shopify/ui-extensions/checkout/preact";
 
 // import local dara
 import {
@@ -75,16 +63,29 @@ function formatProgramInfo(program, billingNumber) {
   return `${program} ${billingNumber}`;
 }
 
-// 1. Choose an extension target
-export default reactExtension("purchase.checkout.block.render", () => (
-  <Extension />
-));
+function ProgramSelect({ label, options, value, onChange, formatLabel }) {
+  return (
+    <s-select
+      label={label}
+      placeholder="Select an option"
+      value={value}
+      onChange={(event) => onChange(event.currentTarget.value)}
+    >
+      {options.map((option) => (
+        <s-option key={option} value={option}>
+          {formatLabel ? formatLabel(option) : option}
+        </s-option>
+      ))}
+    </s-select>
+  );
+}
+
+// 1. Render the extension (target is set in shopify.extension.toml)
+export default async () => {
+  render(<Extension />, document.body);
+};
 
 function Extension() {
-  const translate = useTranslate();
-  const { extension } = useApi();
-  const instructions = useInstructions();
-  const applyAttributeChange = useApplyAttributeChange();
   const customer = useCustomer();
   const appMetafields = useAppMetafields();
   const [selectedProgramOption, setSelectedProgramOption] = useState("");
@@ -115,14 +116,14 @@ function Extension() {
     // This useEffect runs every time selectedProgram changes
     useEffect(() => {
       if (billingNumber !== "") {
-        applyAttributeChange({
+        shopify.applyAttributeChange({
           key: "Program Info",
           type: "updateAttribute",
           value: formatProgramInfo(programName, billingNumber),
         });
       }
       else if (billingNumber === "") {
-        applyAttributeChange({
+        shopify.applyAttributeChange({
           key: "Program Info",
           type: "updateAttribute",
           value: "",
@@ -196,174 +197,122 @@ function Extension() {
   };
   // 3. Render a UI
   return (
-    <BlockStack border={"dotted"} padding={"tight"}>
-      <Heading level={1}>Billing</Heading>
-      {!isAuthorized ? (
-        <Banner status="critical">{UNAUTHORIZED_MESSAGE}</Banner>
-      ) : (
-        <>
-          {!isBillingComplete && (
-            <Banner status="warning">{INCOMPLETE_MESSAGE}</Banner>
-          )}
-          <Select
+    <s-box border="base base dotted" padding="small">
+      <s-stack gap="base">
+        <s-heading>Billing</s-heading>
+        {!isAuthorized ? (
+          <s-banner tone="critical">{UNAUTHORIZED_MESSAGE}</s-banner>
+        ) : (
+          <>
+            {!isBillingComplete && (
+              <s-banner tone="warning">{INCOMPLETE_MESSAGE}</s-banner>
+            )}
+            <ProgramSelect
               label="Select Program"
-              options={allowedPrograms.map((value) => ({
-                label: value,
-                value: value,
-              }))}
+              options={allowedPrograms}
               value={selectedProgramOption}
               onChange={handleCheckboxChange}
-              />
-          {/* display program detail section */}
-          {selectedProgramOption === "ICS" && (
-            <>
-              <Select
-              label="Select Program"
-              options={Object.entries(IcsProgramList).map(
-                ([key, value]) => ({
-                  label: value,
-                  value: value,
-                })
-              )}
-              value={subProgramName}
-              onChange={handleSubProgramChange}
-              />
-              {subProgramName && (
-                <Select
+            />
+            {/* display program detail section */}
+            {selectedProgramOption === "ICS" && (
+              <>
+                <ProgramSelect
+                  label="Select Program"
+                  options={Object.values(IcsProgramList)}
+                  value={subProgramName}
+                  onChange={handleSubProgramChange}
+                />
+                {subProgramName && (
+                  <ProgramSelect
+                    label="Select Program"
+                    options={Object.values(IcsSubProgramList[subProgramName])}
+                    value={selectedBilling}
+                    onChange={handleBillingChange}
+                  />
+                )}
+              </>
+            )}
+            {selectedProgramOption === "Paramed" && (
+              <ProgramSelect
                 label="Select Program"
-                options={Object.entries(IcsSubProgramList[subProgramName]).map(
-                  ([key, value]) => ({
-                    label: value,
-                    value: value,
-                  })
-                )}
+                options={Object.values(ParamedProgramList)}
                 value={selectedBilling}
                 onChange={handleBillingChange}
-                />
-              )}
-            </>
-          )}
-          {selectedProgramOption === "Paramed" && (
-            <Select
-            label="Select Program"
-            options={Object.entries(ParamedProgramList).map(
-              ([key, value]) => ({
-                label: value,
-                value: value,
-              })
-            )}
-            value={selectedBilling}
-            onChange={handleBillingChange}
-            />
-          )}
-          {selectedProgramOption === "WSIB" && (
-            <>
-              <TextField
-              label={`${selectedProgramOption} Billing Number`}
-              name={`${selectedProgramOption} Billing Number`}
-              onChange={(value) => setBillingNumber(value)}
-              value={billingNumber}
               />
-            </>
-          )}
-          {selectedProgramOption === "Vyta" && (
-            <Select
-            label="Select Program"
-            options={Object.entries(VytaProgramList).map(
-              ([key, value]) => ({
-                label: value,
-                value: value,
-              })
             )}
-            value={selectedBilling}
-            onChange={handleBillingChange}
-            />
-          )}
-          {selectedProgramOption === "Thornbrook Homecare" && (
-            <Select
-            label="Select Program"
-            options={Object.entries(ThornbrookHomecareProgramList).map(
-              ([key, value]) => ({
-                label: value,
-                value: value,
-              })
-            )}
-            value={selectedBilling}
-            onChange={handleBillingChange}
-            />
-          )}
-          {selectedProgramOption === "Carecor" && (
-            <Select
-            label="Select Program"
-            options={Object.entries(CarecorProgramList).map(
-              ([key, value]) => ({
-                label: value,
-                value: value,
-              })
-            )}
-            value={selectedBilling}
-            onChange={handleBillingChange}
-            />
-          )}
-          {selectedProgramOption === "Consumable" && (
-            <>
-              <Select
-              label="Select Location"
-              options={Object.entries(ConsumableLocationList).map(
-                ([key, value]) => ({
-                  label: value,
-                  value: value,
-                })
-              )}
-              value={subProgramName}
-              onChange={handleSubProgramChange}
+            {selectedProgramOption === "WSIB" && (
+              <s-text-field
+                label={`${selectedProgramOption} Billing Number`}
+                name={`${selectedProgramOption} Billing Number`}
+                onChange={(event) => setBillingNumber(event.currentTarget.value)}
+                value={billingNumber}
               />
-              {subProgramName && ConsumableProgramList[subProgramName] && (
-                <Select
+            )}
+            {selectedProgramOption === "Vyta" && (
+              <ProgramSelect
                 label="Select Program"
-                options={Object.entries(ConsumableProgramList[subProgramName]).map(
-                  ([key, value]) => ({
-                    label: boldLocationLabel(value),
-                    value: value,
-                  })
-                )}
+                options={Object.values(VytaProgramList)}
                 value={selectedBilling}
                 onChange={handleBillingChange}
-                />
-              )}
-            </>
-          )}
-          {selectedProgramOption === "Bayshore Branch" && (
-            <>
-              <Select
-              label="Select Province"
-              options={Object.entries(BayshoreBranchProvinceList).map(
-                ([key, value]) => ({
-                  label: value,
-                  value: value,
-                })
-              )}
-              value={subProgramName}
-              onChange={handleSubProgramChange}
               />
-              {subProgramName && BayshoreBranchProgramList[subProgramName] && (
-                <Select
-                label="Select Branch"
-                options={Object.entries(BayshoreBranchProgramList[subProgramName]).map(
-                  ([key, value]) => ({
-                    label: value,
-                    value: value,
-                  })
-                )}
+            )}
+            {selectedProgramOption === "Thornbrook Homecare" && (
+              <ProgramSelect
+                label="Select Program"
+                options={Object.values(ThornbrookHomecareProgramList)}
                 value={selectedBilling}
                 onChange={handleBillingChange}
+              />
+            )}
+            {selectedProgramOption === "Carecor" && (
+              <ProgramSelect
+                label="Select Program"
+                options={Object.values(CarecorProgramList)}
+                value={selectedBilling}
+                onChange={handleBillingChange}
+              />
+            )}
+            {selectedProgramOption === "Consumable" && (
+              <>
+                <ProgramSelect
+                  label="Select Location"
+                  options={Object.values(ConsumableLocationList)}
+                  value={subProgramName}
+                  onChange={handleSubProgramChange}
                 />
-              )}
-            </>
-          )}
-        </>
-      )}
-    </BlockStack>
+                {subProgramName && ConsumableProgramList[subProgramName] && (
+                  <ProgramSelect
+                    label="Select Program"
+                    options={Object.values(ConsumableProgramList[subProgramName])}
+                    value={selectedBilling}
+                    onChange={handleBillingChange}
+                    formatLabel={boldLocationLabel}
+                  />
+                )}
+              </>
+            )}
+            {selectedProgramOption === "Bayshore Branch" && (
+              <>
+                <ProgramSelect
+                  label="Select Province"
+                  options={Object.values(BayshoreBranchProvinceList)}
+                  value={subProgramName}
+                  onChange={handleSubProgramChange}
+                />
+                {subProgramName && BayshoreBranchProgramList[subProgramName] && (
+                  <ProgramSelect
+                    label="Select Branch"
+                    options={Object.values(BayshoreBranchProgramList[subProgramName])}
+                    value={selectedBilling}
+                    onChange={handleBillingChange}
+                  />
+                )}
+              </>
+            )}
+          </>
+        )}
+      </s-stack>
+    </s-box>
   );
 
   function handleBillingChange(value) {
