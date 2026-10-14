@@ -172,6 +172,7 @@ export const BayshoreBranchProgramList = {
   "Manitoba": {
     1: "BHC Branch Winnipeg (Govt.) - A-232 Regent Ave West, WINNIPEG, R2C 1R2 - 2249456",
     2: "BHC Branch Winnipeg (Private) - 396 Edison Ave, WINNIPEG, R2G 0L8 - 2062166",
+    3: "BHC Branch Winnipeg (Remote Staffing) - 1700 Ness Ave, WINNIPEG, R3J 3Y1 - 2254780",
   },
   "Ontario": {
     1: "Bayshore Workplace Insurance Branch - 2101 Hadwen Rd, MISSISSAUGA, L5K 2L3 - 1138191",
