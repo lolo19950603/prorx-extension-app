@@ -99,7 +99,10 @@ export const ParamedProgramList = {
   1: "Chatham-Kent - 1131530",
   2: "Guelph OHT - 1131535",
   3: "Chatham H2H - 1151904",
-  4: "Huntsville Nursing Clinic - 1164424"
+  4: "Huntsville Nursing Clinic - 1164424",
+  5: "North Bay H2H - 1167015",
+  6: "North Bay H2LTCH - 1167017",
+  7: "North East Centrics - 1167019",
 };
 
 export const ThornbrookHomecareProgramList = {
