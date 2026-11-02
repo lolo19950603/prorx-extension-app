@@ -7,6 +7,7 @@ export const ProgramTypeList = {
   6: "Consumable",
   7: "Thornbrook Homecare",
   8: "Carecor",
+  9: "Silver Specialty Rx",
 }
 
 export const IcsProgramList = {
@@ -109,6 +110,10 @@ export const CarecorProgramList = {
   1: "Carecor Health Services Halifax - 1064739",
   2: "Carecor Health Services Ottawa - 1064740",
   3: "Carecor Health Services Hamilton - 1120272",
+};
+
+export const SilverSpecialtyRxList = {
+  1: "Silver Specialty Rx - 1137228",
 };
 
 export const ConsumableLocationList = {

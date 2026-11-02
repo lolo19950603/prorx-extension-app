@@ -16,6 +16,7 @@ import {
   VytaProgramList,
   ThornbrookHomecareProgramList,
   CarecorProgramList,
+  SilverSpecialtyRxList,
   ConsumableLocationList,
   ConsumableProgramList,
   BayshoreBranchProvinceList,
@@ -268,6 +269,14 @@ function Extension() {
               <ProgramSelect
                 label="Select Program"
                 options={Object.values(CarecorProgramList)}
+                value={selectedBilling}
+                onChange={handleBillingChange}
+              />
+            )}
+            {selectedProgramOption === "Silver Specialty Rx" && (
+              <ProgramSelect
+                label="Select Program"
+                options={Object.values(SilverSpecialtyRxList)}
                 value={selectedBilling}
                 onChange={handleBillingChange}
               />
