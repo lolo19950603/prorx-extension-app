@@ -200,7 +200,7 @@ export const BayshoreBranchProgramList = {
     15: "BHC Branch Kingston (Govt.) - 120-650 DALTON AVE, KINGSTON, K7M 8N7 - 1054148",
     16: "BHC Branch Kitchener (Govt.) - 201-725 Bridge St. W., WATERLOO, N2V 2H1 - 1002306",
     17: "BHC Branch London (Govt.) - 21-1510 Woodcock Street, LONDON, N6H 5S1 - 1053282",
-    18: "BHC Branch London (Private) - 595 BRADLEY AVE, LONDON, N6E 3Z8 - 2006614",
+    18: "BHC Branch London (Private) - Unit 207-101 Cherryhill Blvd, LONDON, N6H 4S4 - 2006614",
     19: "BHC Branch Mississauga (BTR-ON) - 2101 Hadwen Rd, MISSISSAUGA, L5K 2L3 - 1053275",
     20: "BHC Branch Mississauga (Private) - 2101 Hadwen Rd, MISSISSAUGA, L5K 2L3 - 2006784",
     21: "BHC Branch Niagara (Govt.) - 3300 MERRITTVILLE HIGHWAY # 3, THOROLD, L2V 4Y6 - 1028229",
