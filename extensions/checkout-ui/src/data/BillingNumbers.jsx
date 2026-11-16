@@ -70,6 +70,8 @@ export const IcsSubProgramList = {
     34: "William Osler Peritoneal Dialysis - 1118861",
     35: "WilliamOsler@Home - 1118860",
     36: "West Haldimand@Home - 1152366",
+    37: "Georgian Bay Home - 1167838",
+    38: "St. Joe's Sudbury Home - 1167840",
   },
   "H&K": {
     1: "Humber River - 1118862",
@@ -103,6 +105,7 @@ export const ParamedProgramList = {
   5: "North Bay H2H - 1167015",
   6: "North Bay H2LTCH - 1167017",
   7: "North East Centrics - 1167019",
+  8: "Toronto Central WSIB - 1167286",
 };
 
 export const ThornbrookHomecareProgramList = {
